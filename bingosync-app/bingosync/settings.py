@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 IS_PROD = False
 
-from bingosync.secret_settings import SECRET_KEY, ADMINS, SERVER_EMAIL, DB_USER
+from bingosync.secret_settings import SECRET_KEY, ADMINS, SERVER_EMAIL, DB_USER, DB_PASS
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = not IS_PROD
@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrapform',
+    'crispy_bootstrap3',
     'crispy_forms',
     'url_tools',
     'bingosync'
@@ -52,7 +53,6 @@ MIDDLEWARE = (
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -92,6 +92,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'bingosync',
         'USER': DB_USER,
+        'PASSWORD': DB_PASS
     }
 }
 
@@ -194,7 +195,7 @@ GEN_TESTDATA_DIR = os.path.join(TESTDATA_DIR, "gen_output")
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 STATIC_URL = '/static/'
 
